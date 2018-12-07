@@ -236,6 +236,11 @@ export default {
             this.zr.add(text);
         },
         async getData() {
+            // try {
+            //     let { data } = await this.$http.get("");
+            // } catch (error) {
+            //     console.log(error);
+            // }
             let data = chartData;
             this.drawGrid();
             data.forEach(item => {

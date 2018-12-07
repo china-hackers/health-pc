@@ -80,6 +80,13 @@ export default {
     }),
     methods: {
         async getData() {
+            // try {
+            //     let { data } = await this.$http.get("");
+            //     commit("UPDATE_CONFIG_DATA", data);
+            //     bus.$emit("config_data_ready");
+            // } catch (error) {
+            //     console.log(error);
+            // }
             let data = tableData;
             this.tableData = data;
         }
