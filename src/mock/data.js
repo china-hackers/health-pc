@@ -140,7 +140,7 @@ export const chartData = [
         ]
     },
     {
-        type: "baseline",
+        type: "baseline", //新增类型，用户绘一根直线
         color: "red",
         cellMin: 0, // 坐标系Y轴最小值，同configData内的cellMin
         cellSplit: 5, // 坐标系Y轴每格的值，同configData内的cellSplit
