@@ -7,6 +7,7 @@
 import zrender from "zrender";
 import bus from "@/lib/bus";
 import { chartData } from "../mock/data";
+import { addHover } from "../lib/util";
 export default {
     props: {
         height: {
@@ -77,17 +78,6 @@ export default {
             let cellSplit = data.cellSplit;
             let color = data.color;
             data.array.forEach((item, index) => {
-                let circle = new zrender.Circle({
-                    shape: {
-                        cx: this.getX(item.time),
-                        cy: this.getY(item.value, cellMin, cellSplit),
-                        r: 3
-                    },
-                    style: {
-                        fill: color
-                    }
-                });
-                this.zr.add(circle);
                 if (index >= 1) {
                     let preItem = data.array[index - 1];
                     if (preItem.break !== true) {
@@ -108,6 +98,47 @@ export default {
                         });
                         this.zr.add(line);
                     }
+                }
+                let circle = new zrender.Circle({
+                    shape: {
+                        cx: this.getX(item.time),
+                        cy: this.getY(item.value, cellMin, cellSplit),
+                        r: 3
+                    },
+                    style: {
+                        fill: color
+                    },
+                    zlevel: 2
+                });
+                this.zr.add(circle);
+                addHover(circle, this.zr, item.tips);
+                if (item.extra) {
+                    let circle2 = new zrender.Circle({
+                        shape: {
+                            cx: this.getX(item.time),
+                            cy: this.getY(item.extra, cellMin, cellSplit),
+                            r: 3
+                        },
+                        style: {
+                            stroke: color,
+                            fill: "rgba(255,255,255,1)"
+                        },
+                        zlevel: 2
+                    });
+                    this.zr.add(circle2);
+                    addHover(circle2, this.zr, item.extraTips);
+                    let line = new zrender.Line({
+                        shape: {
+                            x1: this.getX(item.time),
+                            y1: this.getY(item.value, cellMin, cellSplit),
+                            x2: this.getX(item.time),
+                            y2: this.getY(item.extra, cellMin, cellSplit)
+                        },
+                        style: {
+                            stroke: color
+                        }
+                    });
+                    this.zr.add(line);
                 }
             });
         },
@@ -130,7 +161,8 @@ export default {
                     },
                     style: {
                         fill: color
-                    }
+                    },
+                    zlevel: 2
                 });
                 let circle2 = new zrender.Circle({
                     shape: {
@@ -140,8 +172,11 @@ export default {
                     },
                     style: {
                         fill: color
-                    }
+                    },
+                    zlevel: 2
                 });
+                addHover(circle, this.zr, item.v1Tips);
+                addHover(circle2, this.zr, item.v2Tips);
                 let line = new zrender.Line({
                     shape: {
                         x1: x,
@@ -190,7 +225,9 @@ export default {
             let array = data.array;
             let y = data.y;
             array.forEach(item => {
-                var g = new zrender.Group();
+                var g = new zrender.Group({
+                    zlevel: 2
+                });
                 g.position[0] = this.getX(item.time) - 5;
                 g.position[1] = this.getY(y, cellMin, cellSplit) - 5;
                 g.add(
@@ -218,6 +255,7 @@ export default {
                     })
                 );
                 this.zr.add(g);
+                addHover(g, this.zr, item.tips);
             });
         },
         drawText(data) {
@@ -234,6 +272,25 @@ export default {
                 position: [this.getX(data.time), 50]
             });
             this.zr.add(text);
+        },
+        drawBaseline(data) {
+            let cellMin = data.cellMin;
+            let cellSplit = data.cellSplit;
+            let color = data.color;
+            let y = data.y;
+            let line = new zrender.Line({
+                shape: {
+                    x1: 0,
+                    y1: this.getY(y, cellMin, cellSplit),
+                    x2: this.width,
+                    y2: this.getY(y, cellMin, cellSplit)
+                },
+                style: {
+                    stroke: color,
+                    lineWidth: 2
+                }
+            });
+            this.zr.add(line);
         },
         async getData() {
             // try {
@@ -252,6 +309,8 @@ export default {
                     this.drawTag(item);
                 } else if (item.type === "text") {
                     this.drawText(item);
+                } else if (item.type === "baseline") {
+                    this.drawBaseline(item);
                 }
             });
         }

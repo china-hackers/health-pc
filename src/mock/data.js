@@ -21,7 +21,8 @@ export const chartData = [
         array: [
             {
                 time: 3, //横坐标，入院三小时
-                value: 110 // 纵坐标的值，实际坐标系位置需要与cellMin与cellSplit一起计算
+                value: 110, // 纵坐标的值，实际坐标系位置需要与cellMin与cellSplit一起计算
+                tips: "脉搏110" // 鼠标移动到点上时显示的文字信息
             },
             {
                 time: 8,
@@ -42,7 +43,10 @@ export const chartData = [
             },
             {
                 time: 26,
-                value: 130
+                value: 130,
+                tips: "脉搏130",
+                extra: 110,
+                extraTips: "脉搏110"
             },
             // 同一个格子内，数据变化
             {
@@ -82,7 +86,9 @@ export const chartData = [
             {
                 time: 3,
                 v1: 42,
-                v2: 20
+                v2: 20,
+                v1Tips: "脉搏xxx",
+                v2Tips: "心跳YYY"
             },
             {
                 time: 9,
@@ -116,7 +122,8 @@ export const chartData = [
         y: 150, // 标签所有的y坐标都是一样的
         array: [
             {
-                time: 3
+                time: 3,
+                tips: "这里是hover下的信息提示"
             },
             {
                 time: 9
@@ -131,6 +138,13 @@ export const chartData = [
                 time: 27
             }
         ]
+    },
+    {
+        type: "baseline",
+        color: "red",
+        cellMin: 0, // 坐标系Y轴最小值，同configData内的cellMin
+        cellSplit: 5, // 坐标系Y轴每格的值，同configData内的cellSplit
+        y: 120 // 标签所有的y坐标都是一样的
     }
 ];
 
