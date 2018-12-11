@@ -150,6 +150,12 @@ export const chartData = [
 
 // 表格数据
 export const tableData = {
+    name: "黄光裕", //姓名
+    sex: "男", // 性别
+    age: "56", // 年龄
+    department: "呼吸科", //科室
+    bed: "12", // 床号
+    hospitalized: "12", // 住院号
     // 日期
     date: [
         "18年10月14日",

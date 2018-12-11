@@ -1,6 +1,6 @@
 <template lang="pug">
 .view 
-    info-bar
+    info-bar(:data="tableData")
     table
         tbody
             tr  

@@ -2,24 +2,38 @@
 .comp.flex 
     .item.flex
         label 姓名:
-        .value 兰桂昌
+        .value {{data.name}}
     .item.flex
         label 性别:
-        .value 兰桂昌
+        .value {{data.sex}}
     .item.flex 
         label 年龄:
-        .value 兰桂昌
+        .value {{data.age}}
     .item.flex 
         label 科别:
-        .value 兰桂昌
+        .value {{data.department}}
     .item.flex 
         label 病床:
-        .value 兰桂昌
+        .value {{data.bed}}
     .item.flex 
         label 住院号:
-        .value 兰桂昌
+        .value {{data.hospitalized}}
 
 </template>
+
+<script>
+export default {
+    props: {
+        data: {
+            type: Object,
+            default() {
+                return {};
+            }
+        }
+    }
+};
+</script>
+
 
 <style lang="scss" scoped>
 .comp {
