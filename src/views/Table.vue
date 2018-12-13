@@ -23,7 +23,7 @@
                     render(:xSplit="configData.daySplit")
             tr  
                 td 呼吸
-                td.timer-day(v-for="item in tableData.breath")
+                td.timer-day(v-for="item in tableData ß.breath")
                     time-count(:split="configData.daySplit" :data="item" :hasData="true")
             tr  
                 td 小便量(ml)
