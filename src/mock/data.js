@@ -182,18 +182,30 @@ export const tableData = {
     bloodPressure: [100, 100, 100, 100, 100, 100, 100],
     // 身高/体重
     height: [1, 1, 1, 1, 1, 1, 1],
-    weight: [1, 1, 1, 1, 1, 1, 1]
+    weight: [1, 1, 1, 1, 1, 1, 1],
+    // 疼痛
+    pain: [1, 1, 1, 1, 1, 1, 1],
+    // 呼吸
+    breath: [
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6]
+    ]
 };
 
 export const configData = {
     // N等分，只支持4或者6
-    daySplit: 4,
+    daySplit: 6,
     // 图例
     legend: [
-        {
-            name: "疼痛",
-            color: "#000"
-        },
+        // {
+        //     name: "疼痛",
+        //     color: "#000"
+        // },
         {
             name: "体温",
             color: "blue"
@@ -201,11 +213,11 @@ export const configData = {
         {
             name: "脉搏",
             color: "red"
-        },
-        {
-            name: "呼吸",
-            color: "#2f1c77"
         }
+        // {
+        //     name: "呼吸",
+        //     color: "#2f1c77"
+        // }
     ],
     // 竖坐标配置
     yAxisData: [
@@ -217,14 +229,14 @@ export const configData = {
             cellMin: 20, // 坐标轴最小值
             cellSplit: 5 // 坐标轴每格代表的值
         },
-        {
-            name: "呼吸",
-            displayMax: 55, // 显示的最大值
-            displayMin: 15, // 显示的最小值
-            displaySplit: 5, // 显示值递增的间隔
-            cellMin: 7, // 坐标轴最小值
-            cellSplit: 2 // 坐标轴每格代表的值
-        },
+        // {
+        //     name: "呼吸",
+        //     displayMax: 55, // 显示的最大值
+        //     displayMin: 15, // 显示的最小值
+        //     displaySplit: 5, // 显示值递增的间隔
+        //     cellMin: 7, // 坐标轴最小值
+        //     cellSplit: 2 // 坐标轴每格代表的值
+        // },
         {
             name: "体温摄氏",
             displayMax: 42, // 显示的最大值
@@ -232,14 +244,14 @@ export const configData = {
             displaySplit: 1, // 显示值递增的间隔
             cellMin: 33.8, // 坐标轴最小值
             cellSplit: 0.3 // 坐标轴每格代表的值
-        },
-        {
-            name: "疼痛",
-            displayMax: 10, // 显示的最大值
-            displayMin: 1, // 显示的最小值
-            displaySplit: 9, // 显示值递增的间隔
-            cellMin: -7, // 坐标轴最小值
-            cellSplit: 2 // 坐标轴每格代表的值
         }
+        // {
+        //     name: "疼痛",
+        //     displayMax: 10, // 显示的最大值
+        //     displayMin: 1, // 显示的最小值
+        //     displaySplit: 9, // 显示值递增的间隔
+        //     cellMin: -7, // 坐标轴最小值
+        //     cellSplit: 2 // 坐标轴每格代表的值
+        // }
     ]
 };

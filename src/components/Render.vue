@@ -54,7 +54,8 @@ export default {
                         y2: this.height
                     },
                     style: {
-                        stroke: "#000"
+                        stroke: "#000",
+                        lineWidth: i % this.xSplit === 0 ? 2 : 1
                     }
                 });
                 this.zr.add(line);
@@ -303,19 +304,21 @@ export default {
             //     console.log(error);
             // }
             let data = chartData;
-            this.drawGrid();
-            data.forEach(item => {
-                if (item.type === "line") {
-                    this.drawLine(item);
-                } else if (item.type === "area") {
-                    this.drawArea(item);
-                } else if (item.type === "tag") {
-                    this.drawTag(item);
-                } else if (item.type === "text") {
-                    this.drawText(item);
-                } else if (item.type === "baseline") {
-                    this.drawBaseline(item);
-                }
+            this.$nextTick(() => {
+                this.drawGrid();
+                data.forEach(item => {
+                    if (item.type === "line") {
+                        this.drawLine(item);
+                    } else if (item.type === "area") {
+                        this.drawArea(item);
+                    } else if (item.type === "tag") {
+                        this.drawTag(item);
+                    } else if (item.type === "text") {
+                        this.drawText(item);
+                    } else if (item.type === "baseline") {
+                        this.drawBaseline(item);
+                    }
+                });
             });
         }
     },

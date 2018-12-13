@@ -1,5 +1,5 @@
 <template lang="pug">
-.comp.flex
+.comp.flex(:class="{'has-data':hasData}")
     .item(v-for="item in array") {{item}}
 </template>
 
@@ -9,11 +9,29 @@ export default {
         split: {
             type: Number,
             default: 4
+        },
+        data: {
+            type: Array,
+            default() {
+                return [];
+            }
+        },
+        hasData: {
+            type: Boolean,
+            default() {
+                return false;
+            }
         }
     },
     computed: {
         array() {
-            return this.split === 4 ? [3, 9, 15, 21] : [2, 6, 10, 14, 18, 22];
+            if (this.hasData) {
+                return this.data;
+            } else {
+                return this.split === 4
+                    ? [3, 9, 15, 21]
+                    : [2, 6, 10, 14, 18, 22];
+            }
         }
     }
 };
@@ -36,6 +54,14 @@ export default {
         word-wrap: break-word;
         &:last-child {
             border-right: 0 none;
+        }
+    }
+    &.has-data {
+        .item {
+            align-items: flex-start;
+            &:nth-child(2n) {
+                align-items: flex-end;
+            }
         }
     }
 }

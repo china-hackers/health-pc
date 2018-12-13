@@ -22,6 +22,7 @@ export default new Vuex.Store({
     mutations: {
         UPDATE_CONFIG_DATA(state, data) {
             Object.assign(state.configData, data);
+            console.log(state);
         },
         UPDATE_ID(state, data) {
             Object.assign(state.urlParam, data);

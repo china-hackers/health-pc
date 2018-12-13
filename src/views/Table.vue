@@ -22,6 +22,10 @@
                 td.padding-0(colspan="7")
                     render(:xSplit="configData.daySplit")
             tr  
+                td 呼吸
+                td.timer-day(v-for="item in tableData.breath")
+                    time-count(:split="configData.daySplit" :data="item" :hasData="true")
+            tr  
                 td 小便量(ml)
                 td(v-for="item in tableData.peeVolume") {{item}}
             tr  
@@ -42,6 +46,9 @@
             tr  
                 td 体重(kg)
                 td(v-for="item in tableData.weight") {{item}}
+            tr  
+                td 疼痛
+                td(v-for="item in tableData.pain") {{item}}
 </template>
 
 <script>

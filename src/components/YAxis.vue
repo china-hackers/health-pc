@@ -35,6 +35,7 @@ export default {
     align-items: stretch;
     position: relative;
     .item {
+        flex-grow: 1;
         width: 25%;
         border-right: 1px solid #000;
         &:last-child {
