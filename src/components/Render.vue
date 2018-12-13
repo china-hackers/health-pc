@@ -8,7 +8,11 @@ import zrender from "zrender";
 import bus from "@/lib/bus";
 import { chartData } from "../mock/data";
 import { addHover } from "../lib/util";
+import { mapState } from "vuex";
 export default {
+    computed: mapState({
+        urlParam: state => state.urlParam
+    }),
     props: {
         height: {
             type: Number,

@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        urlParam: {},
         // 图表配置
         configData: {
             // N等分，只支持4或者6
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     mutations: {
         UPDATE_CONFIG_DATA(state, data) {
             Object.assign(state.configData, data);
+        },
+        UPDATE_ID(state, data) {
+            Object.assign(state.urlParam, data);
         }
     },
     actions: {
@@ -38,6 +42,17 @@ export default new Vuex.Store({
                 commit("UPDATE_CONFIG_DATA", data);
                 bus.$emit("config_data_ready");
             }, 0);
+        },
+        getUrlParam({ commit }) {
+            let search = window
+                .decodeURIComponent(window.location.search.slice(1))
+                .split("&");
+            let param = {};
+            search.forEach(str => {
+                let arr = str.split("=");
+                param[arr[0]] = arr[1];
+            });
+            commit("UPDATE_ID", param);
         }
     }
 });

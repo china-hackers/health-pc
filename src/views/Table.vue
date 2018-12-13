@@ -76,7 +76,8 @@ export default {
         };
     },
     computed: mapState({
-        configData: state => state.configData
+        configData: state => state.configData,
+        urlParam: state => state.urlParam
     }),
     methods: {
         async getData() {
@@ -93,6 +94,7 @@ export default {
     },
     created() {
         this.$store.dispatch("updateConfigData");
+        this.$store.dispatch("getUrlParam");
         bus.$on("config_data_ready", () => {
             console.log("ready");
             this.getData();
