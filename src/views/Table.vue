@@ -26,6 +26,14 @@
                 td.timer-day(v-for="item in tableData.breath")
                     time-count(:split="configData.daySplit" :data="item" :hasData="true" :specialCss="true")
             tr  
+                td 疼痛
+                td.timer-day(v-for="item in tableData.pain")
+                    time-count(:split="configData.daySplit" :data="item" :hasData="true")
+            tr  
+                td 血压(mmhg)
+                td.timer-day(v-for="item in tableData.bloodPressure")
+                    time-count(:split="2" :data="item" :hasData="true")
+            tr  
                 td 小便量(ml)
                 td(v-for="item in tableData.peeVolume") {{item}}
             tr  
@@ -37,19 +45,14 @@
             tr  
                 td 饮入量(ml)
                 td(v-for="item in tableData.drinkVolume") {{item}}
-            tr  
-                td 血压(mmhg)
-                td(v-for="item in tableData.bloodPressure") {{item}}
+            
             tr  
                 td 身高(cm)
                 td(v-for="item in tableData.height") {{item}}
             tr  
                 td 体重(kg)
                 td(v-for="item in tableData.weight") {{item}}
-            tr  
-                td 疼痛
-                td.timer-day(v-for="item in tableData.pain")
-                    time-count(:split="2" :data="item" :hasData="true")
+            
 </template>
 
 <script>
