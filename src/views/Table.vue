@@ -23,8 +23,8 @@
                     render(:xSplit="configData.daySplit")
             tr  
                 td 呼吸
-                td.timer-day(v-for="item in tableData ß.breath")
-                    time-count(:split="configData.daySplit" :data="item" :hasData="true")
+                td.timer-day(v-for="item in tableData.breath")
+                    time-count(:split="configData.daySplit" :data="item" :hasData="true" :specialCss="true")
             tr  
                 td 小便量(ml)
                 td(v-for="item in tableData.peeVolume") {{item}}
@@ -48,7 +48,8 @@
                 td(v-for="item in tableData.weight") {{item}}
             tr  
                 td 疼痛
-                td(v-for="item in tableData.pain") {{item}}
+                td.timer-day(v-for="item in tableData.pain")
+                    time-count(:split="2" :data="item" :hasData="true")
 </template>
 
 <script>

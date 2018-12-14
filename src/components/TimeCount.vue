@@ -1,5 +1,5 @@
 <template lang="pug">
-.comp.flex(:class="{'has-data':hasData}")
+.comp.flex(:class="{'special-css':specialCss}")
     .item(v-for="item in array") {{item}}
 </template>
 
@@ -18,9 +18,11 @@ export default {
         },
         hasData: {
             type: Boolean,
-            default() {
-                return false;
-            }
+            default: false
+        },
+        specialCss: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -56,7 +58,7 @@ export default {
             border-right: 0 none;
         }
     }
-    &.has-data {
+    &.special-css {
         .item {
             align-items: flex-start;
             &:nth-child(2n) {
