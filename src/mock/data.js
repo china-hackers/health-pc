@@ -46,7 +46,20 @@ export const chartData = [
                 value: 130,
                 tips: "脉搏130",
                 extra: 110,
-                extraTips: "脉搏110"
+                extraTips: "脉搏110",
+                others: [
+                    {
+                        time: 28,
+                        value: 60,
+                        tips: "脉搏120",
+                        color: "red"
+                    },
+                    {
+                        time: 25,
+                        value: 80,
+                        tips: "脉搏120"
+                    }
+                ]
             },
             // 同一个格子内，数据变化
             {

@@ -145,6 +145,37 @@ export default {
                     });
                     this.zr.add(line);
                 }
+                if (item.others && item.others.length > 0) {
+                    item.others.forEach(other => {
+                        let circle = new zrender.Circle({
+                            shape: {
+                                cx: this.getX(other.time),
+                                cy: this.getY(other.value, cellMin, cellSplit),
+                                r: 3
+                            },
+                            style: {
+                                stroke: other.color || color,
+                                fill: "rgba(255,255,255,1)"
+                            },
+                            zlevel: 2
+                        });
+                        this.zr.add(circle);
+                        addHover(circle, this.zr, other.tips);
+                        let line = new zrender.Line({
+                            shape: {
+                                x1: this.getX(item.time),
+                                y1: this.getY(item.value, cellMin, cellSplit),
+                                x2: this.getX(other.time),
+                                y2: this.getY(other.value, cellMin, cellSplit)
+                            },
+                            style: {
+                                stroke: other.color || color,
+                                lineDash: [2, 2]
+                            }
+                        });
+                        this.zr.add(line);
+                    });
+                }
             });
         },
         drawArea(data) {
