@@ -52,6 +52,9 @@
             tr  
                 td 体重(kg)
                 td(v-for="item in tableData.weight") {{item}}
+
+            tr(v-for="item in 4")
+                td(v-for="item in 8") &nbsp;
             
 </template>
 

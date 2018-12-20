@@ -280,11 +280,11 @@ export const configData = {
         {
             name: "脉搏",
             color: "red"
+        },
+        {
+            name: "呼吸",
+            color: "#2f1c77"
         }
-        // {
-        //     name: "呼吸",
-        //     color: "#2f1c77"
-        // }
     ],
     // 竖坐标配置
     yAxisData: [
@@ -296,14 +296,14 @@ export const configData = {
             cellMin: 20, // 坐标轴最小值
             cellSplit: 5 // 坐标轴每格代表的值
         },
-        // {
-        //     name: "呼吸",
-        //     displayMax: 55, // 显示的最大值
-        //     displayMin: 15, // 显示的最小值
-        //     displaySplit: 5, // 显示值递增的间隔
-        //     cellMin: 7, // 坐标轴最小值
-        //     cellSplit: 2 // 坐标轴每格代表的值
-        // },
+        {
+            name: "呼吸",
+            displayMax: 55, // 显示的最大值
+            displayMin: 15, // 显示的最小值
+            displaySplit: 5, // 显示值递增的间隔
+            cellMin: 7, // 坐标轴最小值
+            cellSplit: 2 // 坐标轴每格代表的值
+        },
         {
             name: "体温摄氏",
             displayMax: 42, // 显示的最大值
