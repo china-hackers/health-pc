@@ -12,6 +12,42 @@ export const chartData = [
         text: "入\n院\n于\n00\n时\n30\n分",
         color: "blue"
     }, // 入院时间
+    {
+        type: "line",
+        color: "navy",
+        cellMin: 20,
+        cellSplit: 5,
+        shape: "empty-circle",
+        array: [
+            {
+                time: 3,
+                value: 120
+            },
+            {
+                time: 8,
+                value: 130
+            }
+        ]
+    },
+    {
+        type: "line",
+        color: "orange",
+        cellMin: 20,
+        cellSplit: 5,
+        shape: "x",
+        array: [
+            {
+                time: 3,
+                value: 100,
+                tips: "肛温111"
+            },
+            {
+                time: 8,
+                value: 90,
+                tips: "肛温111"
+            }
+        ]
+    },
     // 折线图类型
     {
         type: "line",
@@ -50,13 +86,13 @@ export const chartData = [
                 others: [
                     {
                         time: 28,
-                        value: 60,
+                        value: 105,
                         tips: "脉搏120",
                         color: "red"
                     },
                     {
                         time: 25,
-                        value: 80,
+                        value: 115,
                         tips: "脉搏120"
                     }
                 ]

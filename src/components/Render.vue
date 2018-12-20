@@ -7,7 +7,14 @@
 import zrender from "zrender";
 import bus from "@/lib/bus";
 import { chartData } from "../mock/data";
-import { addHover } from "../lib/util";
+import {
+    addHover,
+    createFullCircle,
+    createEmptyCircle,
+    createShape,
+    createLine,
+    createDashLine
+} from "../lib/util";
 import { mapState } from "vuex";
 export default {
     computed: mapState({
@@ -46,35 +53,26 @@ export default {
             let xCount =
                 (this.width - (this.xSplit * 7 - 1)) / (this.xSplit * 7);
             for (let i = 1; i < this.xSplit * 7; i++) {
-                let line = new zrender.Line({
-                    shape: {
-                        x1: i * xCount + i - 1,
-                        y1: 0,
-                        x2: i * xCount + i - 1,
-                        y2: this.height
-                    },
-                    style: {
-                        stroke: "#000",
-                        lineWidth: i % this.xSplit === 0 ? 2 : 1
-                    }
-                });
+                let line = createLine(
+                    i * xCount + i - 1,
+                    0,
+                    i * xCount + i - 1,
+                    this.height,
+                    "#000",
+                    i % this.xSplit === 0 ? 2 : 1
+                );
                 this.zr.add(line);
             }
 
             let yCount =
                 (this.height - (this.heightCount - 1)) / this.heightCount;
             for (let i = 1; i < 50; i++) {
-                let line = new zrender.Line({
-                    shape: {
-                        x1: 0,
-                        y1: i * yCount + i - 1,
-                        x2: this.width,
-                        y2: i * yCount + i - 1
-                    },
-                    style: {
-                        stroke: "#000"
-                    }
-                });
+                let line = createLine(
+                    0,
+                    i * yCount + i - 1,
+                    this.width,
+                    i * yCount + i - 1
+                );
                 this.zr.add(line);
             }
         },
@@ -82,97 +80,62 @@ export default {
             let cellMin = data.cellMin;
             let cellSplit = data.cellSplit;
             let color = data.color;
+            let shape = data.shape;
             data.array.forEach((item, index) => {
                 if (index >= 1) {
                     let preItem = data.array[index - 1];
                     if (preItem.break !== true) {
-                        let line = new zrender.Line({
-                            shape: {
-                                x1: this.getX(preItem.time),
-                                y1: this.getY(
-                                    preItem.value,
-                                    cellMin,
-                                    cellSplit
-                                ),
-                                x2: this.getX(item.time),
-                                y2: this.getY(item.value, cellMin, cellSplit)
-                            },
-                            style: {
-                                stroke: color
-                            }
-                        });
+                        let line = createLine(
+                            this.getX(preItem.time),
+                            this.getY(preItem.value, cellMin, cellSplit),
+                            this.getX(item.time),
+                            this.getY(item.value, cellMin, cellSplit),
+                            color
+                        );
                         this.zr.add(line);
                     }
                 }
-                let circle = new zrender.Circle({
-                    shape: {
-                        cx: this.getX(item.time),
-                        cy: this.getY(item.value, cellMin, cellSplit),
-                        r: 3
-                    },
-                    style: {
-                        fill: color
-                    },
-                    zlevel: 2
-                });
-                this.zr.add(circle);
-                addHover(circle, this.zr, item.tips);
+                let shapeObj = createShape(
+                    this.getX(item.time),
+                    this.getY(item.value, cellMin, cellSplit),
+                    color,
+                    shape
+                );
+                this.zr.add(shapeObj);
+                addHover(shapeObj, this.zr, item.tips);
                 if (item.extra) {
-                    let circle2 = new zrender.Circle({
-                        shape: {
-                            cx: this.getX(item.time),
-                            cy: this.getY(item.extra, cellMin, cellSplit),
-                            r: 3
-                        },
-                        style: {
-                            stroke: color,
-                            fill: "rgba(255,255,255,1)"
-                        },
-                        zlevel: 2
-                    });
+                    let circle2 = createEmptyCircle(
+                        this.getX(item.time),
+                        this.getY(item.extra, cellMin, cellSplit),
+                        color
+                    );
                     this.zr.add(circle2);
                     addHover(circle2, this.zr, item.extraTips);
-                    let line = new zrender.Line({
-                        shape: {
-                            x1: this.getX(item.time),
-                            y1: this.getY(item.value, cellMin, cellSplit),
-                            x2: this.getX(item.time),
-                            y2: this.getY(item.extra, cellMin, cellSplit)
-                        },
-                        style: {
-                            stroke: color
-                        }
-                    });
+                    let line = createLine(
+                        this.getX(item.time),
+                        this.getY(item.value, cellMin, cellSplit),
+                        this.getX(item.time),
+                        this.getY(item.extra, cellMin, cellSplit),
+                        color
+                    );
                     this.zr.add(line);
                 }
                 if (item.others && item.others.length > 0) {
                     item.others.forEach(other => {
-                        let circle = new zrender.Circle({
-                            shape: {
-                                cx: this.getX(other.time),
-                                cy: this.getY(other.value, cellMin, cellSplit),
-                                r: 3
-                            },
-                            style: {
-                                stroke: other.color || color,
-                                fill: "rgba(255,255,255,1)"
-                            },
-                            zlevel: 2
-                        });
+                        let circle = createEmptyCircle(
+                            this.getX(other.time),
+                            this.getY(other.value, cellMin, cellSplit),
+                            other.color || color
+                        );
                         this.zr.add(circle);
                         addHover(circle, this.zr, other.tips);
-                        let line = new zrender.Line({
-                            shape: {
-                                x1: this.getX(item.time),
-                                y1: this.getY(item.value, cellMin, cellSplit),
-                                x2: this.getX(other.time),
-                                y2: this.getY(other.value, cellMin, cellSplit)
-                            },
-                            style: {
-                                stroke: other.color || color,
-                                lineDash: [2, 2]
-                            }
-                        });
+                        let line = createDashLine(
+                            this.getX(item.time),
+                            this.getY(item.value, cellMin, cellSplit),
+                            this.getX(other.time),
+                            this.getY(other.value, cellMin, cellSplit),
+                            other.color || color
+                        );
                         this.zr.add(line);
                     });
                 }
@@ -189,41 +152,11 @@ export default {
                 let x = this.getX(item.time);
                 let y = this.getY(item.v1, cellMin, cellSplit);
                 let y2 = this.getY(item.v2, cellMin, cellSplit);
-                let circle = new zrender.Circle({
-                    shape: {
-                        cx: x,
-                        cy: y,
-                        r: 3
-                    },
-                    style: {
-                        fill: color
-                    },
-                    zlevel: 2
-                });
-                let circle2 = new zrender.Circle({
-                    shape: {
-                        cx: x,
-                        cy: y2,
-                        r: 3
-                    },
-                    style: {
-                        fill: color
-                    },
-                    zlevel: 2
-                });
+                let circle = createFullCircle(x, y, color);
+                let circle2 = createFullCircle(x, y2, color);
                 addHover(circle, this.zr, item.v1Tips);
                 addHover(circle2, this.zr, item.v2Tips);
-                let line = new zrender.Line({
-                    shape: {
-                        x1: x,
-                        y1: y,
-                        x2: x,
-                        y2: y2
-                    },
-                    style: {
-                        stroke: color
-                    }
-                });
+                let line = createLine(x, y, x, y2, color);
                 this.zr.add(circle);
                 this.zr.add(circle2);
                 this.zr.add(line);
