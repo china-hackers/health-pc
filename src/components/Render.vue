@@ -58,7 +58,7 @@ export default {
                     0,
                     i * xCount + i - 1,
                     this.height,
-                    "#000",
+                    "#999",
                     i % this.xSplit === 0 ? 2 : 1
                 );
                 this.zr.add(line);
@@ -71,7 +71,8 @@ export default {
                     0,
                     i * yCount + i - 1,
                     this.width,
-                    i * yCount + i - 1
+                    i * yCount + i - 1,
+                    "#999"
                 );
                 this.zr.add(line);
             }
@@ -111,7 +112,7 @@ export default {
                     );
                     this.zr.add(circle2);
                     addHover(circle2, this.zr, item.extraTips);
-                    let line = createLine(
+                    let line = createDashLine(
                         this.getX(item.time),
                         this.getY(item.value, cellMin, cellSplit),
                         this.getX(item.time),
@@ -220,7 +221,7 @@ export default {
                             textVerticalAlign: "middle",
                             textFill: color
                         },
-                        position: [5, 5]
+                        position: [5, 6]
                     })
                 );
                 this.zr.add(g);

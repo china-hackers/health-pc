@@ -50,7 +50,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-right: 1px solid #000;
+        border-right: 1px solid #999;
         width: 100%;
         word-break: break-all;
         word-wrap: break-word;

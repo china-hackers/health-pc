@@ -41,7 +41,7 @@ export default {
     .item {
         margin-right: 20px;
         label {
-            color: #666;
+            color: #000;
             margin-right: 5px;
         }
     }

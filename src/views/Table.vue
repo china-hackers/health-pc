@@ -21,10 +21,10 @@
                     y-axis
                 td.padding-0(colspan="7")
                     render(:xSplit="configData.daySplit")
-            tr  
-                td 呼吸
-                td.timer-day(v-for="item in tableData.breath")
-                    time-count(:split="configData.daySplit" :data="item" :hasData="true" :specialCss="true")
+            //- tr  
+            //-     td 呼吸
+            //-     td.timer-day(v-for="item in tableData.breath")
+            //-         time-count(:split="configData.daySplit" :data="item" :hasData="true" :specialCss="true")
             tr  
                 td 疼痛
                 td.timer-day(v-for="item in tableData.pain")
@@ -40,20 +40,21 @@
                 td 大便次数
                 td(v-for="item in tableData.shitTimes") {{item}}
             tr  
-                td 输入量(ml)
+                td 输入液量(ml)
                 td(v-for="item in tableData.inputVolume") {{item}}
             tr  
-                td 饮入量(ml)
+                td 摄入量(ml)
                 td(v-for="item in tableData.drinkVolume") {{item}}
-            
+            tr  
+                td 出量(ml)
+                td(v-for="item in tableData.excretionVolume") {{item}}
             tr  
                 td 身高(cm)
                 td(v-for="item in tableData.height") {{item}}
             tr  
                 td 体重(kg)
                 td(v-for="item in tableData.weight") {{item}}
-
-            tr(v-for="item in 4")
+            tr(v-for="item in 3")
                 td(v-for="item in 8") &nbsp;
             
 </template>

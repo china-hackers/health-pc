@@ -16,7 +16,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .comp-legend {
     .item {
