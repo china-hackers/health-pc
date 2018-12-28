@@ -199,7 +199,7 @@ export default {
                     zlevel: 2
                 });
                 g.position[0] = this.getX(item.time) - 5;
-                g.position[1] = this.getY(y, cellMin, cellSplit) - 5;
+                g.position[1] = this.getY(item.y || y, cellMin, cellSplit) - 5;
                 g.add(
                     new zrender.Circle({
                         shape: {

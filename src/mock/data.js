@@ -172,13 +172,16 @@ export const chartData = [
         array: [
             {
                 time: 3,
-                tips: "这里是hover下的信息提示"
+                tips: "这里是hover下的信息提示",
+                y: 120
             },
             {
-                time: 9
+                time: 9,
+                y: 130
             },
             {
-                time: 15
+                time: 15,
+                y: 110
             },
             {
                 time: 21
