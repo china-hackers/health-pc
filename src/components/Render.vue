@@ -105,10 +105,11 @@ export default {
                 this.zr.add(shapeObj);
                 addHover(shapeObj, this.zr, item.tips);
                 if (item.extra) {
+                    let extraColor = item.extraColor || color;
                     let circle2 = createEmptyCircle(
                         this.getX(item.time),
                         this.getY(item.extra, cellMin, cellSplit),
-                        color
+                        extraColor
                     );
                     this.zr.add(circle2);
                     addHover(circle2, this.zr, item.extraTips);
@@ -117,7 +118,7 @@ export default {
                         this.getY(item.value, cellMin, cellSplit),
                         this.getX(item.time),
                         this.getY(item.extra, cellMin, cellSplit),
-                        color
+                        extraColor
                     );
                     this.zr.add(line);
                 }

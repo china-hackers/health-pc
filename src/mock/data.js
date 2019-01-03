@@ -83,6 +83,7 @@ export const chartData = [
                 tips: "脉搏130",
                 extra: 110,
                 extraTips: "脉搏110",
+                extraColor: "red",
                 others: [
                     {
                         time: 28,
